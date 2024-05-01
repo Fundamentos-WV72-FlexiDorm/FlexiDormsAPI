@@ -26,6 +26,5 @@ public class RegisterRentalResponseDto {
     private Long room;
     private boolean favorite;
     private String arrenderId;
-    private String moviment;
-
+    private String movement;
 }

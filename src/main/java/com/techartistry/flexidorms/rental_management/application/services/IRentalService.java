@@ -20,11 +20,11 @@ public interface IRentalService {
      * @return La reserva realizada
      */
     ApiResponse<List<RegisterRentalResponseDto>> getRentalsByStudentId(String student);
-    ApiResponse<List<RegisterRentalResponseDto>> getMovimentByStudentId(String student);
+    ApiResponse<List<RegisterRentalResponseDto>> getMovementByStudentId(String student);
 
     ApiResponse<List<RegisterRentalResponseDto>> getRentalsByArrenderId(String arrenderId);
 
-    ApiResponse<List<RegisterRentalResponseDto>> getMovimentByArrenderId(String arrenderId);
+    ApiResponse<List<RegisterRentalResponseDto>> getMovementByArrenderId(String arrenderId);
 
     ApiResponse<RegisterRentalResponseDto> toggleFavorite(Long reservationId);
 

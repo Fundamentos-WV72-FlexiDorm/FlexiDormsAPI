@@ -6,7 +6,6 @@ import com.techartistry.flexidorms.rental_management.application.services.IRenta
 import com.techartistry.flexidorms.rental_management.domain.entities.Reservation;
 import com.techartistry.flexidorms.rental_management.infrastructure.repositories.IRentalRepository;
 import com.techartistry.flexidorms.rental_management.infrastructure.repositories.IRoomRepository;
-import com.techartistry.flexidorms.security_management.infrastructure.repositories.IUserRepository;
 import com.techartistry.flexidorms.shared.exception.ApplicationException;
 import com.techartistry.flexidorms.shared.model.dto.response.ApiResponse;
 import com.techartistry.flexidorms.shared.model.enums.EStatus;
@@ -23,14 +22,12 @@ public class RentalService implements IRentalService {
     private final IRentalRepository rentalRepository;
 
     private final IRoomRepository roomRepository;
-    private final IUserRepository userRepository;
     private final ModelMapper modelMapper;
 
-    public RentalService(IRentalRepository rentalRepository, ModelMapper modelMapper, IRoomRepository roomRepository, IUserRepository userRepository) {
+    public RentalService(IRentalRepository rentalRepository, ModelMapper modelMapper, IRoomRepository roomRepository) {
         this.rentalRepository = rentalRepository;
         this.modelMapper = modelMapper;
         this.roomRepository = roomRepository;
-        this.userRepository = userRepository;
     }
 
     @Override
@@ -62,7 +59,7 @@ public class RentalService implements IRentalService {
     public ApiResponse<List<RegisterRentalResponseDto>> getRentalsByStudentId(String student) {
 
         //Obtener las reservas del estudiante
-        List<Reservation> rentals = rentalRepository.findByStudentAndMoviment(student,"false");
+        List<Reservation> rentals = rentalRepository.findByStudentAndMovement(student,"false");
 
         //Convertir las reservas a un objeto de tipo RegisterRentalResponseDto (dto)
         List<RegisterRentalResponseDto> rentalsResponseDto = rentals.stream()
@@ -73,10 +70,10 @@ public class RentalService implements IRentalService {
     }
 
     @Override
-    public ApiResponse<List<RegisterRentalResponseDto>> getMovimentByStudentId(String student) {
+    public ApiResponse<List<RegisterRentalResponseDto>> getMovementByStudentId(String student) {
 
         //Obtener las reservas del estudiante
-        List<Reservation> rentals = rentalRepository.findByStudentAndMoviment(student,"true");
+        List<Reservation> rentals = rentalRepository.findByStudentAndMovement(student,"true");
 
         //Convertir las reservas a un objeto de tipo RegisterRentalResponseDto (dto)
         List<RegisterRentalResponseDto> rentalsResponseDto = rentals.stream()
@@ -90,7 +87,7 @@ public class RentalService implements IRentalService {
     public ApiResponse<List<RegisterRentalResponseDto>> getRentalsByArrenderId(String arrenderId) {
 
         //Obtener las reservas del estudiante
-        List<Reservation> rentals = rentalRepository.findByArrenderIdAndMoviment(arrenderId,"false");
+        List<Reservation> rentals = rentalRepository.findByArrenderIdAndMovement(arrenderId,"false");
 
         //Convertir las reservas a un objeto de tipo RegisterRentalResponseDto (dto)
         List<RegisterRentalResponseDto> rentalsResponseDto = rentals.stream()
@@ -101,10 +98,10 @@ public class RentalService implements IRentalService {
     }
 
     @Override
-    public ApiResponse<List<RegisterRentalResponseDto>> getMovimentByArrenderId(String arrenderId) {
+    public ApiResponse<List<RegisterRentalResponseDto>> getMovementByArrenderId(String arrenderId) {
 
         //Obtener las reservas del estudiante
-        List<Reservation> rentals = rentalRepository.findByArrenderIdAndMoviment(arrenderId,"true");
+        List<Reservation> rentals = rentalRepository.findByArrenderIdAndMovement(arrenderId,"true");
 
         //Convertir las reservas a un objeto de tipo RegisterRentalResponseDto (dto)
         List<RegisterRentalResponseDto> rentalsResponseDto = rentals.stream()
@@ -140,7 +137,7 @@ public class RentalService implements IRentalService {
         if (optionalReservation.isPresent()) {
             Reservation reservation = optionalReservation.get();
             // Establecer el valor deseado, por ejemplo, establecerlo en true
-            reservation.setMoviment("true");
+            reservation.setMovement("true");
             Reservation updatedReservation = rentalRepository.save(reservation);
             // Mapear la entidad actualizada a tu DTO
             var reservationResponseDto = modelMapper.map(updatedReservation, RegisterRentalResponseDto.class);

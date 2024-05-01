@@ -52,7 +52,7 @@ public class Reservation {
     private boolean favorite = false;
 
     @Column(nullable = true, columnDefinition = "VARCHAR(5) DEFAULT 'false'")
-    private String moviment;
+    private String movement;
 
     public Reservation() {}
 }

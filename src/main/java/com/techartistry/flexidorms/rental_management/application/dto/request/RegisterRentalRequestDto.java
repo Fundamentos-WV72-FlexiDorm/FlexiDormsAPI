@@ -45,7 +45,5 @@ public class RegisterRentalRequestDto {
 
     private String arrenderId;
 
-    private String moviment;
-
-
+    private String movement;
 }

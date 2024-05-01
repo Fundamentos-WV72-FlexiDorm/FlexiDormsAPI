@@ -39,9 +39,9 @@ public class RentalController {
     }
 
     @Operation(summary = "Get rentals by student")
-    @GetMapping("/getMovimentByStudentId/{student}")
-    public ResponseEntity<ApiResponse<List<RegisterRentalResponseDto>>> getMovimentByStudentId(@PathVariable String student){
-        var res = rentalService.getMovimentByStudentId(student);
+    @GetMapping("/getMovementByStudentId/{student}")
+    public ResponseEntity<ApiResponse<List<RegisterRentalResponseDto>>> getMovementByStudentId(@PathVariable String student){
+        var res = rentalService.getMovementByStudentId(student);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
@@ -53,9 +53,9 @@ public class RentalController {
     }
 
     @Operation(summary = "Get rentals by arrenderId")
-    @GetMapping("/getMovimentByArrenderId/{arrenderId}")
-    public ResponseEntity<ApiResponse<List<RegisterRentalResponseDto>>> getMovimentByArrenderId(@PathVariable String arrenderId){
-        var res = rentalService.getMovimentByArrenderId(arrenderId);
+    @GetMapping("/getMovementByArrenderId/{arrenderId}")
+    public ResponseEntity<ApiResponse<List<RegisterRentalResponseDto>>> getMovementByArrenderId(@PathVariable String arrenderId){
+        var res = rentalService.getMovementByArrenderId(arrenderId);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
