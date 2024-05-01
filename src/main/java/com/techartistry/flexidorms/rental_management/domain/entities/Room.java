@@ -1,13 +1,11 @@
 package com.techartistry.flexidorms.rental_management.domain.entities;
 
-        import jakarta.persistence.*;
-        import lombok.AllArgsConstructor;
-        import lombok.Data;
-        import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "rooms")
 public class Room {
@@ -31,16 +29,14 @@ public class Room {
     @Column(name = "status", columnDefinition = "VARCHAR(255) DEFAULT 'free' NOT NULL")
     private String status;
 
-
     private String imageUrl;
 
     private String nearUniversities;
-
-
 
     //MUCHAS "habitaciones" van a estar en UN "arrendador"
     @ManyToOne
     @JoinColumn(name = "arrender_id", nullable = false)
     private Arrender arrender;
 
+    public Room() {}
 }

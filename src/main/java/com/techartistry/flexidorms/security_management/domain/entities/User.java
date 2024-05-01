@@ -2,17 +2,15 @@ package com.techartistry.flexidorms.security_management.domain.entities;
 
 import com.techartistry.flexidorms.rental_management.domain.enums.EGender;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 //se creará una sola tabla para todas las clases que hereden de esta
@@ -47,12 +45,12 @@ public class User {
     @Column(nullable = false)
     private LocalDate birthDate;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String profilePicture;
 
     @Column(nullable = false)
     private boolean isEnabled;
-    
+
     //se tomará como un String los valores de este enum
     @Enumerated(EnumType.STRING)
     private EGender gender;
@@ -68,4 +66,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
+
+    public User() {}
 }

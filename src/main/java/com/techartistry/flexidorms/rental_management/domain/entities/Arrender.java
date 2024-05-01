@@ -1,16 +1,18 @@
 package com.techartistry.flexidorms.rental_management.domain.entities;
 
 import com.techartistry.flexidorms.security_management.domain.entities.User;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 public class Arrender extends User {
     @Column(nullable = false, columnDefinition = "boolean default false")
@@ -23,4 +25,6 @@ public class Arrender extends User {
      */
     @OneToMany(mappedBy = "arrender", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Room> rooms = new HashSet<>();
+
+    public Arrender() {}
 }

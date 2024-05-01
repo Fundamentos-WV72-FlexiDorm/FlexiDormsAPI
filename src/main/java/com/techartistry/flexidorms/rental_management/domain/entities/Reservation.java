@@ -1,15 +1,13 @@
 package com.techartistry.flexidorms.rental_management.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "rental")
 public class Reservation {
@@ -56,5 +54,6 @@ public class Reservation {
     @Column(nullable = true, columnDefinition = "VARCHAR(5) DEFAULT 'false'")
     private String moviment;
 
+    public Reservation() {}
 }
 

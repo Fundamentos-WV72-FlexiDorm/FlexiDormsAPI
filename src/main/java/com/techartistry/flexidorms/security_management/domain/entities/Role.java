@@ -2,13 +2,11 @@ package com.techartistry.flexidorms.security_management.domain.entities;
 
 import com.techartistry.flexidorms.security_management.domain.enums.ERole;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -21,4 +19,6 @@ public class Role {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ERole name;
+
+    public Role() {}
 }

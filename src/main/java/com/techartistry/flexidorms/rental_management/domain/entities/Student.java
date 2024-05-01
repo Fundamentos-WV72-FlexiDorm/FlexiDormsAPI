@@ -2,12 +2,11 @@ package com.techartistry.flexidorms.rental_management.domain.entities;
 
 import com.techartistry.flexidorms.security_management.domain.entities.User;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 public class Student extends User {
     @Column(length = 50)
@@ -15,4 +14,6 @@ public class Student extends User {
 
     @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isVerified;
+
+    public Student() {}
 }
